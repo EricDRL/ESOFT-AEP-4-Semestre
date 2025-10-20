@@ -1,25 +1,36 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cursos")
 public class Curso {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String descricao;
+    @Column(name = "carga_horaria")
     private Integer cargaHoraria;
-    private Professor professorId;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id", nullable = false)
+    private Professor professor;
+
+    @OneToMany(mappedBy = "curso")
+    private List<AlunoCurso> matriculas;
 
     public Curso() {
     }
 
-    public Curso(String nome, String descricao, Integer cargaHoraria, Professor professorId) {
+    public Curso(String nome, String descricao, Integer cargaHoraria, Professor professor) {
         this.nome = nome;
         this.descricao = descricao;
         this.cargaHoraria = cargaHoraria;
-        this.professorId = professorId;
+        this.professor = professor;
+        this.matriculas = new ArrayList<>();
     }
 
     public Long getId() {
@@ -38,7 +49,11 @@ public class Curso {
         return cargaHoraria;
     }
 
-    public Professor getProfessorId() {
-        return professorId;
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public List<AlunoCurso> getMatriculas() {
+        return matriculas;
     }
 }

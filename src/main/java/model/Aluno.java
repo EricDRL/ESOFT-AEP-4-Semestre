@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "alunos")
 public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +12,7 @@ public class Aluno {
     private String nome;
     private String email;
     private String senha;
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
     public Aluno() {

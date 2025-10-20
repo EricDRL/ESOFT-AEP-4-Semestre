@@ -13,8 +13,7 @@ public class Professor {
     public Professor() {
     }
 
-    public Professor(Long id, String nome) {
-        this.id = id;
+    public Professor(String nome) {
         this.nome = nome;
     }
 
