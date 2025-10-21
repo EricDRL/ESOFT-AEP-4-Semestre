@@ -1,12 +1,12 @@
-import controller.AlunoController;
+import controller.MenuController;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        AlunoController ac = new AlunoController(sc);
-        ac.iniciarMenu();
+        MenuController menuController = new MenuController(sc);
+        menuController.iniciar();
         sc.close();
 
     }
