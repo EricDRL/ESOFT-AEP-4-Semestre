@@ -1,10 +1,7 @@
 package controller;
 
-import model.Aluno;
 import services.AlunoService;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class AlunoController {
@@ -20,8 +17,7 @@ public class AlunoController {
         int opcao = 0;
         do {
             System.out.println("\n--- MENU ALUNOS ---");
-            System.out.println("1. Cadastrar Aluno");
-            System.out.println("2. Listar Alunos");
+            System.out.println("1. Listar Alunos");
             System.out.println("0. Voltar");
             System.out.print("Escolha: ");
             opcao = sc.nextInt();
@@ -29,36 +25,18 @@ public class AlunoController {
 
             switch (opcao) {
                 case 1:
-                    cadastrar();
+                    listar();
                     break;
                 case 2:
-//                    listar();
+
                     break;
                 // ...
             }
         } while (opcao != 0);
     }
 
-    private void cadastrar() {
-        System.out.print("Nome: ");
-        String nome = sc.nextLine();
-        System.out.print("Email: ");
-        String email = sc.nextLine();
-        System.out.print("Senha: ");
-        String senha = sc.nextLine();
-        System.out.print("Data nascimento (DD/MM/YYYY): ");
-        String dataNascimento = sc.nextLine();
-
-        Aluno aluno = new Aluno(
-                nome, email, senha,
-                LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-        );
-
-        try {
-            alunoService.cadastrarAluno(aluno);
-            System.out.println("✅ Aluno cadastrado com sucesso!");
-        } catch (RuntimeException e) {
-            System.err.println("❌ Erro ao cadastrar: " + e.getMessage());
-        }
+    private void listar() {
+        var alunos = alunoService.getAlunos();
+        alunos.forEach(a -> System.out.println(a.getNome()));
     }
 }
