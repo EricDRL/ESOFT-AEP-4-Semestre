@@ -17,18 +17,19 @@ public class AlunoCurso {
     @MapsId("cursoId")
     private Curso curso;
 
-//    private LocalDate dataMatricula;
-//
+    @Column(name = "data_matricula")
+    private LocalDate dataMatricula;
+
 //    private String status;
 
     public AlunoCurso() {
     }
 
-    public AlunoCurso(AlunoCursoId alunoCursoId, Aluno aluno, Curso curso/*, LocalDate dataMatricula, String status*/) {
+    public AlunoCurso(AlunoCursoId alunoCursoId, Aluno aluno, Curso curso, LocalDate dataMatricula/*, String status*/) {
         this.alunoCursoId = alunoCursoId;
         this.aluno = aluno;
         this.curso = curso;
-//        this.dataMatricula = dataMatricula;
+        this.dataMatricula = dataMatricula;
 //        this.status = status;
     }
 
@@ -44,9 +45,9 @@ public class AlunoCurso {
         return curso;
     }
 
-//    public LocalDate getDataMatricula() {
-//        return dataMatricula;
-//    }
+    public LocalDate getDataMatricula() {
+        return dataMatricula;
+    }
 //
 //    public String getStatus() {
 //        return status;
